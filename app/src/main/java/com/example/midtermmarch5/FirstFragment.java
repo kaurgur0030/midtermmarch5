@@ -30,7 +30,7 @@ import retrofit2.Response;
 
 public class FirstFragment extends Fragment {
     ImageView img1, img2, img3, img4, img5, img6;
-    TextView txt_Weather, txt_Clear, txt_mintemp, txt_temp, txt_maxtemp, txt_Humidity, txt_perdictability,
+    TextView txt_Weather, txt_Clear, txt_mintemp, txt_temp, txt_maxtemp, txt_Humidity, txt_perdictability;
 
 
     private NavController navController;
@@ -38,6 +38,7 @@ public class FirstFragment extends Fragment {
 
     ArrayList<ConsolidatedWeather> parray;
     RecycleAdapater adapter;
+    private String api;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -128,16 +129,29 @@ public class FirstFragment extends Fragment {
 
     }
 
-    public void genView( ConsolidatedWeather c) {
-        Picasso.get().load(c.getImage()).into(img1);
-        Picasso.get().load(c.getImage()).into(img2);
-        Picasso.get().load(c.getImage()).into(img3);
-        Picasso.get().load(c.getImage()).into(img4);
-        Picasso.get().load(c.getImage()).into(img5);
-        Picasso.get().load(c.getImage()).into(img6);
-        txt_Weather.setText(c.getWeatherStateAbbr());
+    public void genView(ConsolidatedWeather c) {
+
+        txt_Weather.setText(c.getWeatherStateName());
+        txt_temp.setText(c.getTheTemp());
+        txt_mintemp.setText(c.getMinTemp());
+        txt_maxtemp.setText(c.getMaxTemp());
+        txt_Humidity.setText(c.getWeatherStateName());
+
+        txt_perdictability.setText(c.getPredictability());
 
 
     }
 
+    public String getIcon(String api) {
+        String url = "https://www.metaweather.com/static/img/weather/png/64/";
+
+
+        url = url + "png";
+
+        return url;
+
+    }
 }
+
+
+
